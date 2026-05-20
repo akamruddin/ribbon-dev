@@ -1,5 +1,4 @@
 .page {
-  min-height: calc(100vh - 56px);
   background: var(--rbbn-bg);
   display: flex;
   justify-content: center;
