@@ -1,0 +1,11 @@
+.badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--rbbn-radius-pill);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.staff   { background: rgba(125, 0, 185, 0.1);  color: var(--rbbn-purple); }
+.partner { background: rgba(217, 23, 145, 0.1); color: var(--rbbn-pink);   }
+.member  { background: rgba(0, 0, 0, 0.06);     color: var(--rbbn-dkgray); }

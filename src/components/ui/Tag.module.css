@@ -1,0 +1,7 @@
+.tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--rbbn-radius-pill);
+  background: var(--rbbn-ltgray);
+  color: var(--rbbn-dkgray);
+}

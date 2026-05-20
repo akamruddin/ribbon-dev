@@ -1,0 +1,13 @@
+.block {
+  background: #030008;
+  border-radius: var(--rbbn-radius-md);
+  padding: 13px 17px;
+  font-family: var(--rbbn-mono);
+  font-size: 13px;
+  line-height: 1.9;
+  margin-bottom: 15px;
+  border: 1px solid rgba(125, 0, 185, 0.18);
+  color: rgba(255, 255, 255, 0.82);
+  white-space: pre-wrap;
+  word-break: break-all;
+}

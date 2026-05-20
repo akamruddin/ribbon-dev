@@ -1,0 +1,11 @@
+.card {
+  background: var(--rbbn-white);
+  border: 1px solid var(--rbbn-border);
+  border-left: 3px solid var(--rbbn-purple);
+  border-radius: var(--rbbn-radius-md);
+  padding: 13px 17px;
+}
+.title { font-size: 10px; font-weight: 700; color: var(--rbbn-purple); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 9px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+.lbl { font-size: 10px; color: var(--rbbn-gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+.val { font-family: var(--rbbn-mono); font-size: 12px; font-weight: 600; color: var(--rbbn-nearblack); }

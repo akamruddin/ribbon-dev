@@ -1,0 +1,25 @@
+@import './tokens.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--rbbn-font);
+  background: var(--rbbn-white);
+  color: var(--rbbn-black);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: var(--rbbn-font);
+}
+
+a {
+  text-decoration: none;
+}

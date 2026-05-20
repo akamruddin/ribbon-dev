@@ -1,0 +1,38 @@
+.card {
+  background: var(--rbbn-white);
+  border: 1px solid var(--rbbn-border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.header {
+  background: var(--rbbn-bg-section);
+  border-bottom: 1px solid var(--rbbn-border-lt);
+  padding: 9px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title { font-size: 12px; font-weight: 700; color: var(--rbbn-dkgray); }
+.allGood {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--rbbn-success);
+  background: rgba(20,133,90,0.09);
+  padding: 2px 10px;
+  border-radius: var(--rbbn-radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.gdot { width: 6px; height: 6px; border-radius: 50%; background: var(--rbbn-success); }
+.svg { display: block; width: 100%; }
+.legend {
+  display: flex;
+  gap: 14px;
+  padding: 9px 15px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--rbbn-border-lt);
+}
+.legItem { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--rbbn-dkgray); }
+.legDot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }

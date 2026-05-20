@@ -1,0 +1,41 @@
+:root {
+  /* Brand colors — extracted from ribboncommunications.com */
+  --rbbn-purple:        #7D00B9;
+  --rbbn-purple2:       #C0059E;
+  --rbbn-purple3:       #DC5DF7;
+  --rbbn-pink:          #D91791;
+
+  /* Gradients */
+  --rbbn-hero-grad:     linear-gradient(135deg, #0A0010 0%, #1A0033 40%, #2B0050 100%);
+  --rbbn-cta-grad:      linear-gradient(135deg, #7D00B9 0%, #C0059E 60%, #D91791 100%);
+
+  /* Neutrals */
+  --rbbn-nearblack:     #0A000F;
+  --rbbn-dkgray:        #585858;
+  --rbbn-gray:          #999999;
+  --rbbn-ltgray:        #EEEEEE;
+  --rbbn-page-title:    #4B4B4B;
+  --rbbn-white:         #FFFFFF;
+  --rbbn-black:         #000000;
+
+  /* Semantic */
+  --rbbn-border:        #E2E2E2;
+  --rbbn-border-lt:     #F0F0F0;
+  --rbbn-bg:            #F8F8F8;
+  --rbbn-bg-section:    #FAFAFA;
+  --rbbn-success:       #14855A;
+  --rbbn-warn:          #E8A020;
+
+  /* Spacing & shape */
+  --rbbn-radius-pill:   50px;
+  --rbbn-radius-md:     8px;
+  --rbbn-radius-lg:     12px;
+
+  /* Shadows */
+  --rbbn-shadow-sm:     0 2px 8px rgba(125, 0, 185, 0.08);
+  --rbbn-shadow-lg:     0 16px 48px rgba(0, 0, 0, 0.18);
+
+  /* Typography */
+  --rbbn-font:          'Roboto', sans-serif;
+  --rbbn-mono:          'JetBrains Mono', 'Fira Code', Consolas, monospace;
+}

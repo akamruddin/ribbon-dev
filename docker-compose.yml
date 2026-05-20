@@ -1,0 +1,77 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB:       ribbon_dev
+      POSTGRES_USER:     ribbon
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ribbondev}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ribbon -d ribbon_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis:    { condition: service_healthy }
+    environment:
+      NODE_ENV:    ${NODE_ENV:-production}
+      PORT:        8000
+      DATABASE_URL: postgresql://ribbon:${POSTGRES_PASSWORD:-ribbondev}@postgres:5432/ribbon_dev
+      REDIS_URL:    redis://redis:6379
+      JWT_SECRET:             ${JWT_SECRET:?Set JWT_SECRET in .env}
+      JWT_REFRESH_SECRET:     ${JWT_REFRESH_SECRET:?Set JWT_REFRESH_SECRET in .env}
+      JWT_EXPIRES_IN:         ${JWT_EXPIRES_IN:-15m}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
+      CORS_ORIGIN:    ${APP_URL:-http://localhost}
+      APP_URL:        ${APP_URL:-http://localhost}
+      SMTP_HOST:      ${SMTP_HOST:-}
+      SMTP_PORT:      ${SMTP_PORT:-587}
+      SMTP_SECURE:    ${SMTP_SECURE:-false}
+      SMTP_USER:      ${SMTP_USER:-}
+      SMTP_PASS:      ${SMTP_PASS:-}
+      EMAIL_FROM:     ${EMAIL_FROM:-}
+      EMAIL_FROM_ADDR: ${EMAIL_FROM_ADDR:-}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        VITE_API_BASE_URL: ""
+    depends_on:
+      backend: { condition: service_healthy }
+    ports:
+      - "${HTTP_PORT:-80}:80"
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  redisdata:

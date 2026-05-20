@@ -1,0 +1,32 @@
+export const DEVICES = [
+  ...['NPT-1', 'NPT-2', 'NPT-3', 'NPT-4', 'NPT-5'].map((id, i) => ({
+    id,
+    type: 'Neptune (rNOS)',
+    cls: 'neptune',
+    ip: `10.0.1.${i + 1}`,
+    sshPort: 2221 + i,
+    netconfPort: 830,
+    restconfPort: 443,
+    grpcPort: 57400,
+    access: 'ssh',
+  })),
+  ...['APL-1', 'APL-2', 'APL-3', 'APL-4', 'APL-5'].map((id, i) => ({
+    id,
+    type: 'Apollo (Optical)',
+    cls: 'apollo',
+    ip: `10.0.2.${i + 1}`,
+    sshPort: 2231 + i,
+    netconfPort: 830,
+    restconfPort: 443,
+    grpcPort: 57400,
+    access: 'ssh',
+  })),
+  {
+    id: 'MUSE',
+    type: 'Muse Orchestrator',
+    cls: 'muse',
+    ip: '10.0.3.1',
+    httpsPort: 8443,
+    access: 'ui',
+  },
+]

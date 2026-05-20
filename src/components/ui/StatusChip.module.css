@@ -1,0 +1,21 @@
+.chip {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--rbbn-radius-pill);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.booting {
+  background: rgba(220, 93, 247, 0.12);
+  color: var(--rbbn-purple3);
+  border: 1px solid rgba(220, 93, 247, 0.3);
+}
+.ready {
+  background: rgba(0, 200, 100, 0.1);
+  color: #4ADE80;
+  border: 1px solid rgba(0, 200, 100, 0.28);
+}

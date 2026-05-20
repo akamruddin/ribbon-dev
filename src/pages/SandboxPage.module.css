@@ -1,0 +1,98 @@
+.page { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+
+/* ── Hero ── */
+.hero {
+  background: var(--rbbn-hero-grad);
+  padding: 28px 32px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 90% at 90% 50%, rgba(125,0,185,0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 60% at 10% 30%, rgba(192,5,158,0.2)  0%, transparent 60%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(220,93,247,0.3) 1px, transparent 1px);
+  background-size: 55px 55px;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.heroInner { position: relative; z-index: 1; }
+.heroEyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--rbbn-purple3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 9px;
+}
+.heroTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 7px;
+  line-height: 1.25;
+}
+.heroSub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  max-width: 560px;
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+.heroChips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 4px 12px;
+  border-radius: var(--rbbn-radius-pill);
+}
+.chipGhost {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  border: 1px dashed rgba(255,255,255,0.25);
+  padding: 4px 12px;
+  border-radius: var(--rbbn-radius-pill);
+}
+
+/* ── Body layout ── */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  padding: 20px 24px;
+  flex: 1;
+  overflow-y: auto;
+  background: var(--rbbn-bg);
+  align-items: start;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.statsSection {
+  padding: 0 24px 32px;
+  background: var(--rbbn-bg);
+}

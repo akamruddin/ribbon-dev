@@ -1,0 +1,154 @@
+.wrap {
+  background: var(--rbbn-white);
+  border: 1px solid var(--rbbn-border);
+  border-radius: var(--rbbn-radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--rbbn-nearblack);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.sub {
+  font-size: 11px;
+  color: var(--rbbn-gray);
+}
+
+/* Buffer separator between slot rows */
+.buffer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 2px;
+}
+.bufferLine {
+  flex: 1;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--rbbn-border) 0,
+    var(--rbbn-border) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+.bufferLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--rbbn-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.loading, .empty {
+  font-size: 13px;
+  color: var(--rbbn-gray);
+  text-align: center;
+  padding: 24px 0;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slot {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--rbbn-border);
+  border-radius: var(--rbbn-radius-md);
+  background: var(--rbbn-bg);
+  transition: border-color 0.15s;
+}
+.slot:not(.slotFull):hover { border-color: var(--rbbn-purple3); }
+.slotFull { opacity: 0.55; }
+
+.slotNow { border-color: var(--rbbn-purple3); background: rgba(125,0,185,0.03); }
+
+.slotTime { display: flex; flex-direction: column; gap: 4px; }
+.timeRow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.timeRange { font-size: 13px; font-weight: 700; color: var(--rbbn-nearblack); }
+.localNote { font-size: 10px; color: var(--rbbn-gray); }
+
+.nowBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00a050;
+  background: rgba(0,160,80,0.1);
+  border: 1px solid rgba(0,160,80,0.25);
+  border-radius: 99px;
+  padding: 2px 8px;
+}
+.nowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00a050;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+.slotMid { display: flex; flex-direction: column; gap: 4px; }
+.availBar {
+  height: 4px;
+  background: var(--rbbn-border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.availFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.3s;
+}
+.availText { font-size: 11px; font-weight: 600; }
+
+.bookBtn {
+  padding: 7px 16px;
+  border-radius: var(--rbbn-radius-pill);
+  border: none;
+  background: var(--rbbn-purple);
+  color: #fff;
+  font-family: var(--rbbn-font);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.bookBtn:hover:not(:disabled) { background: var(--rbbn-purple2); }
+.bookBtnDisabled {
+  background: var(--rbbn-border) !important;
+  color: var(--rbbn-gray);
+  cursor: not-allowed;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--rbbn-gray);
+  margin: 0;
+  line-height: 1.5;
+}

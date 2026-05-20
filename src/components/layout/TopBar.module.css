@@ -1,0 +1,17 @@
+.topbar {
+  background: #0A000F;
+  padding: 0 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  flex-shrink: 0;
+}
+.link {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.link:hover { color: #fff; }
