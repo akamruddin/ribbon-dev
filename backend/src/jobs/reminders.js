@@ -13,10 +13,10 @@ const MAX_EXTENSIONS = 3
 
 export function startReminderJob() {
   // Every minute: 30-minute end warnings
-  cron.schedule('* * * * *', runReminderCheck)
+  cron.schedule('* * * * *', runReminderCheck, { runOnInit: false })
 
   // Every minute: complete expired sessions + send summary emails
-  cron.schedule('* * * * *', runCompletionCheck)
+  cron.schedule('* * * * *', runCompletionCheck, { runOnInit: false })
 
   console.log('[jobs] Reminder and completion jobs started')
 }
