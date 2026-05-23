@@ -1,0 +1,35 @@
+# Minimal virtual server — PAP auth against PostgreSQL radcheck table
+server default {
+    listen {
+        type   = auth
+        ipaddr = *
+        port   = 1812
+    }
+
+    listen {
+        type   = acct
+        ipaddr = *
+        port   = 1813
+    }
+
+    authorize {
+        preprocess
+        sql        # look up username in radcheck
+        pap        # set Auth-Type = PAP when Cleartext-Password is found
+    }
+
+    authenticate {
+        Auth-Type PAP {
+            pap
+        }
+    }
+
+    preacct  {}
+    accounting {}
+    session  {}
+    post-auth {
+        Post-Auth-Type REJECT {
+            attr_filter.access_reject
+        }
+    }
+}

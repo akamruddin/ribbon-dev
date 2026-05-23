@@ -1,0 +1,29 @@
+sql {
+    driver   = "rlm_sql_postgresql"
+    dialect  = "postgresql"
+
+    server   = "postgres"
+    port     = 5432
+    login    = "ribbon"
+    password = "ribbondev"
+    radius_db = "ribbon_dev"
+
+    authcheck_table  = "radcheck"
+    authreply_table  = "radreply"
+    groupcheck_table = "radgroupcheck"
+    groupreply_table = "radgroupreply"
+    usergroup_table  = "radusergroup"
+
+    read_groups  = no
+    read_clients = no
+
+    pool {
+        start        = 1
+        min          = 1
+        max          = 10
+        spare        = 3
+        uses         = 0
+        lifetime     = 0
+        idle_timeout = 60
+    }
+}

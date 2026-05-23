@@ -1,0 +1,16 @@
+# RADIUS clients — generated at container startup from clients.conf.template
+# Add one client block per device that sends auth requests to this server.
+
+client localhost {
+    ipaddr    = 127.0.0.1
+    secret    = ${RADIUS_SECRET}
+    shortname = localhost
+}
+
+# Muse orchestration instance
+client muse {
+    ipaddr    = muse.ipo-strike-muse-001.lab.rbbn.com
+    secret    = ${RADIUS_SECRET}
+    shortname = muse
+    nastype   = other
+}
