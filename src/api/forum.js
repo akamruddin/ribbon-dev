@@ -39,3 +39,8 @@ export async function unbanUser(userId) {
   const { data } = await client.post(`/api/forum/users/${userId}/unban`)
   return data
 }
+
+export async function pinThread(id, pinned) {
+  const { data } = await client.patch(`/api/forum/threads/${id}/pin`, { pinned })
+  return data
+}

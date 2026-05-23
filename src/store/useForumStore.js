@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { getThreads, getThread, postThread, postReply, deleteThread, deleteReply, banUser } from '../api/forum'
+import { getThreads, getThread, postThread, postReply, deleteThread, deleteReply, banUser, pinThread } from '../api/forum'
 
 const useForumStore = create((set, get) => ({
   activeCategory: 'all',
@@ -97,6 +97,17 @@ const useForumStore = create((set, get) => ({
 
   banUser: async (userId) => {
     await banUser(userId)
+  },
+
+  pinThread: async (id, pinned) => {
+    await pinThread(id, pinned)
+    // Update the thread in the list
+    set({
+      threads: get().threads.map(th => th.id === id ? { ...th, pinned } : th),
+    })
+    // Update the selected thread if it's open
+    const t = get().selectedThread
+    if (t?.id === id) set({ selectedThread: { ...t, pinned } })
   },
 
   openNewThread:  () => set({ newThreadOpen: true }),

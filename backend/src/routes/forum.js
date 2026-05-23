@@ -18,6 +18,7 @@ const THREAD_SELECT = `
     t.id, t.category_slug AS category, t.title, t.body,
     t.pinned, t.reply_count, t.view_count,
     t.last_activity, t.created_at,
+    t.author_id,
     u.username AS author, u.role, u.initials, u.color,
     COALESCE(
       json_agg(DISTINCT tt.tag) FILTER (WHERE tt.tag IS NOT NULL), '[]'
@@ -87,6 +88,7 @@ router.get('/threads/:id', async (req, res) => {
 
     const { rows: replies } = await db.query(
       `SELECT r.id, r.body, r.created_at,
+              r.author_id,
               u.username AS author, u.role, u.initials, u.color
        FROM replies r
        JOIN users u ON u.id = r.author_id
@@ -186,6 +188,18 @@ router.delete('/threads/:id', requireAuth, requireMod, async (req, res) => {
   if (!rows[0]) return res.status(404).json({ error: 'Thread not found' })
   await db.query('DELETE FROM threads WHERE id = $1', [id])
   res.json({ message: 'Thread deleted' })
+})
+
+// PATCH /api/forum/threads/:id/pin  (mod only)
+router.patch('/threads/:id/pin', requireAuth, requireMod, async (req, res) => {
+  const id = parseInt(req.params.id)
+  if (isNaN(id)) return res.status(400).json({ error: 'Invalid thread id' })
+  const { pinned } = req.body ?? {}
+  if (typeof pinned !== 'boolean') return res.status(400).json({ error: 'pinned must be a boolean' })
+  const { rows } = await db.query('SELECT id FROM threads WHERE id = $1', [id])
+  if (!rows[0]) return res.status(404).json({ error: 'Thread not found' })
+  await db.query('UPDATE threads SET pinned = $1 WHERE id = $2', [pinned, id])
+  res.json({ pinned })
 })
 
 // DELETE /api/forum/replies/:id  (mod only)

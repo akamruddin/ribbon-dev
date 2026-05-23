@@ -24,10 +24,9 @@ function ModButton({ label, danger, onClick }) {
 }
 
 export default function ThreadDetail() {
-  const { selectedThread: t, threadLoading, clearThread, deleteThread, deleteReply, banUser } = useForumStore()
+  const { selectedThread: t, threadLoading, clearThread, deleteThread, deleteReply, banUser, pinThread } = useForumStore()
   const { user } = useAuthStore()
   const mod = isMod(user)
-  const [banConfirm, setBanConfirm] = useState(null)  // userId being confirmed for ban
   const [actionError, setActionError] = useState(null)
 
   if (threadLoading && !t) {
@@ -36,6 +35,15 @@ export default function ThreadDetail() {
   if (!t) return null
 
   const replies = t.replies ?? []
+
+  async function handlePin() {
+    try {
+      await pinThread(t.id, !t.pinned)
+      setActionError(null)
+    } catch (e) {
+      setActionError(e?.response?.data?.error ?? 'Pin action failed')
+    }
+  }
 
   async function handleDeleteThread() {
     if (!confirm(`Delete thread "${t.title}"? This cannot be undone.`)) return
@@ -64,7 +72,13 @@ export default function ThreadDetail() {
       <div className={styles.topbar}>
         <button className={styles.back} onClick={clearThread}>← Back to Forum</button>
         {mod && (
-          <ModButton label="Delete Thread" danger onClick={handleDeleteThread} />
+          <div className={styles.topbarMod}>
+            <ModButton
+              label={t.pinned ? '📌 Unpin' : '📌 Pin'}
+              onClick={handlePin}
+            />
+            <ModButton label="Delete Thread" danger onClick={handleDeleteThread} />
+          </div>
         )}
       </div>
 
@@ -72,6 +86,7 @@ export default function ThreadDetail() {
         <div className={styles.actionError}>{actionError}</div>
       )}
 
+      {t.pinned && <div className={styles.pinnedBadge}>📌 Pinned</div>}
       <h1 className={styles.title}>{t.title}</h1>
       <div className={styles.titleMeta}>
         <Badge role={t.role} />
